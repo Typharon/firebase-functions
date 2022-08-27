@@ -1,0 +1,26 @@
+{
+"rules": {
+  "users" :{
+    "$uid":{
+       ".read" : "auth.uid === $uid",
+    	 ".write" : "auth.uid === $uid"
+      }
+    
+  },
+  "birds": {
+   ".read": "true",
+   ".write": "true"
+  },
+ "rooms" :{
+   "$room_id" :{
+      ".read" : "data.child('roommates').child(auth.uid).exists() && auth != null && auth.uid != '' ",
+      "roommates" :{
+        "$uid":{
+    	 ".write" : "auth.uid === $uid"
+      }
+      }
+      
+   }
+ }
+}
+}
